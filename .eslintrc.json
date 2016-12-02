@@ -1,0 +1,21 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "strict": "error",
+        "one-var-declaration-per-line": "error",
+        "no-unused-vars": "error",
+        "indent": ["error", "tab"],
+        "semi": "error",
+        "no-var": "error",
+        "quotes": ["error", "single"],
+        "prefer-const": "error",
+        "id-match": "warn",
+        "no-empty-function": "error",
+        "no-use-before-define": "error",
+        "func-style": "warn"
+    }
+}
