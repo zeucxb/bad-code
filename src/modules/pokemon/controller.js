@@ -1,7 +1,7 @@
 'use strict';
 
 const Model = require('./model');
-const PagarmeService = require('../service/pagarme-service');
+const PagarmeService = require('../../service/pagarme-service');
 
 class Controller {
     static getPokemons(req, res) {
