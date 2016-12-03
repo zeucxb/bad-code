@@ -8,7 +8,6 @@
         "strict": "error",
         "one-var-declaration-per-line": "error",
         "no-unused-vars": "error",
-        "indent": ["error", "tab"],
         "semi": "error",
         "no-var": "error",
         "quotes": ["error", "single"],
