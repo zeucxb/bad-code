@@ -2,7 +2,8 @@
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('pokemons', null, null, {
-	dialect: 'sqlite'
+	dialect: 'sqlite',
+	logging: false,
 });
 
 const Pokemon = sequelize.define('pokemon', {
