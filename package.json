@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "mocha 'src/modules/**/test/*.js' --timeout 10000"
+    "test": "NODE_ENV=test mocha 'src/modules/**/test/*.js' --timeout 10000"
   },
   "author": "ZeuCxb <zeucxb@gmail.com>",
   "license": "ISC",

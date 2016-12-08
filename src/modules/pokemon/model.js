@@ -1,12 +1,10 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('pokemons', null, null, {
-	dialect: 'sqlite',
-	logging: false,
-});
 
-const Pokemon = sequelize.define('pokemon', {
+const db = require('../../db');
+
+const Pokemon = db.define('pokemon', {
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false
@@ -22,9 +20,7 @@ const Pokemon = sequelize.define('pokemon', {
 	}
 });
 
-Pokemon.sync({force: true}).then(() => {
-	console.log('Model is ready!');
-});
+Pokemon.sync();
 
 class Model {
     static getPokemons() {
@@ -41,6 +37,32 @@ class Model {
 
 	static createPokemons(pokemon) {
 		return Pokemon.create(pokemon);
+	}
+
+	static deletePokemonByName(name) {
+		return Model.getPokemonByName(name)
+			.then((pokemon) => {
+				return new Promise((resolve, reject) => {
+					if (pokemon) {
+						resolve(pokemon.destroy());
+					} else {
+						reject(new Error('Pokémon not found!'));
+					}
+				});
+			});
+	}
+
+	static deleteAllPokemons() {
+		return Pokemon.destroy({where: {}})
+			.then((total) => {
+				return new Promise((resolve, reject) => {
+					if (total) {
+						resolve(total);
+					} else {
+						reject(new Error('Nothing to delete!'));
+					}
+				});
+			});
 	}
 }
 
