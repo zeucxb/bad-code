@@ -1,7 +1,6 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-
 const db = require('../../db');
 
 const Pokemon = db.define('pokemon', {
@@ -23,24 +22,32 @@ const Pokemon = db.define('pokemon', {
 Pokemon.sync();
 
 class Model {
-    static getPokemons() {
+	constructor(params) {
+	    params = params || {};
+
+        this.name = params.name || '';
+        this.price = params.price || 0;
+        this.stock = params.stock || 0;
+    }
+
+	static getAll() {
         return Pokemon.findAll();
     }
 
-	static getPokemonByName(name) {
+	getByName() {
 		return Pokemon.findOne({
 			where: {
-                name
+                name: this.name
             }
         });
 	}
 
-	static createPokemons(pokemon) {
-		return Pokemon.create(pokemon);
+	save() {
+		return Pokemon.create(this);
 	}
 
-	static deletePokemonByName(name) {
-		return Model.getPokemonByName(name)
+	deleteByName() {
+		return this.getByName()
 			.then((pokemon) => {
 				return new Promise((resolve, reject) => {
 					if (pokemon) {
@@ -52,7 +59,7 @@ class Model {
 			});
 	}
 
-	static deleteAllPokemons() {
+	static deleteAll() {
 		return Pokemon.destroy({where: {}})
 			.then((total) => {
 				return new Promise((resolve, reject) => {
