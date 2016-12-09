@@ -1,13 +1,13 @@
 'use strict';
 
-const Model = require('../model');
 const assert = require('assert');
+const Model = require('../model');
 
 const pikachu = {name: 'Pikachu', price: 10, stock: 100};
 
 describe('Pokémon Model', () => {
     before((done) => {
-        Model.deleteAllPokemons()
+        Model.deleteAll()
             .catch(() => {
                 done();
             });
@@ -15,7 +15,7 @@ describe('Pokémon Model', () => {
 
     describe('getPokemons', () => {
         it('should return all pokémons', (done) => {
-            Model.getPokemons()
+            Model.getAll()
                 .then((pokemons) => {
                     assert(Array.isArray(pokemons));
                     done();
@@ -28,7 +28,8 @@ describe('Pokémon Model', () => {
 
     describe('createPokemons', () => {
         it('should create a pokémon', (done) => {
-            Model.createPokemons(pikachu)
+            const model = new Model(pikachu);
+            model.save()
                 .then((pokemon) => {
                     assert(pokemon instanceof Object);
                     done();
@@ -41,11 +42,13 @@ describe('Pokémon Model', () => {
 
     describe('getPokemonByName', () => {
         beforeEach(() => {
-            Model.createPokemons(pikachu);
+            const model = new Model(pikachu);
+            model.save();
         });
 
         it('should return a pokémon by name', (done) => {
-            Model.getPokemonByName('Pikachu')
+            const model = new Model({name: pikachu.name});
+            model.getByName()
                 .then((pokemon) => {
                     assert(pokemon);
                     assert.equal(pokemon.get().name, 'Pikachu');
@@ -59,7 +62,8 @@ describe('Pokémon Model', () => {
 
     describe('deletePokemonByName', () => {
         it('should delete a pokémon by name', (done) => {
-            Model.deletePokemonByName('Pikachu')
+            const model = new Model({name: pikachu.name});
+            model.deleteByName()
                 .then((pokemon) => {
                     assert(pokemon);
                     assert.equal(pokemon.get().name, 'Pikachu');
@@ -73,7 +77,7 @@ describe('Pokémon Model', () => {
 
     describe('deleteAllPokemons', () => {
         it('should delete all the pokémons', (done) => {
-            Model.deleteAllPokemons()
+            Model.deleteAll()
                 .then((total) => {
                     assert(total);
                     assert.equal(total, 1);
