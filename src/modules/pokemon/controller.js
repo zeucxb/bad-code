@@ -4,18 +4,12 @@ const Model = require('./model');
 const PagarmeService = require('../../service/pagarme-service');
 
 class Controller {
-    static getPokemons(req, res) {
-        Model.getPokemons()
-            .then((pokemons) => {
-                res.send(pokemons);
-            });
+    static getPokemons() {
+        return Model.getAll();
     }
 
-    static createPokemons(req, res) {
-	    Model.createPokemons(req.body)
-		    .then((pokemon) => {
-			    res.send(pokemon);
-		    });
+    static createPokemons(req) {
+	    return Model.createPokemons(req.body);
     }
 
     static buyPokemons(req, res) {

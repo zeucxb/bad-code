@@ -5,7 +5,7 @@
         "node": true
     },
     "rules": {
-        "strict": "error",
+        "strict": "off",
         "one-var-declaration-per-line": "error",
         "no-unused-vars": "error",
         "semi": "error",
