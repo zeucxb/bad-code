@@ -11,4 +11,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-app.listen(port);
+const server = app.listen(port, () => {
+    const address = server.address();
+    console.log('Api listening at http://%s:%s', address.address, address.port);
+});

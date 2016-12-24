@@ -43,6 +43,10 @@ class Model {
 	}
 
 	save() {
+		if (!this.name) {
+			return Promise.reject(new Error("Pokémon name not provided"));
+		}
+
 		return Pokemon.create(this);
 	}
 

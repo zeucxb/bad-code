@@ -8,8 +8,9 @@ class Controller {
         return Model.getAll();
     }
 
-    static createPokemons(req) {
-	    return Model.createPokemons(req.body);
+    static createPokemons(pokemon) {
+      const model = new Model(pokemon);
+	    return model.save();
     }
 
     static buyPokemons(req, res) {

@@ -5,7 +5,7 @@ const controller = require('./controller');
 
 const pokemonQuery = {
     getPokemons: {
-        description: 'getPokemons description',
+        description: 'This returns all the pokémons in the database',
         type: new GraphQLList(pokemonType),
         resolve: () => {
             return controller.getPokemons();
