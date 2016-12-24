@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --exec babel-node index.js",
     "test": "NODE_ENV=test mocha 'src/modules/**/test/*.js' --timeout 10000"
   },
   "author": "ZeuCxb <zeucxb@gmail.com>",
@@ -13,12 +13,15 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
+    "graphql": "^0.8.2",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "sequelize": "^3.27.0",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
+    "babel-preset-stage-3": "^6.17.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   }
