@@ -49,7 +49,7 @@ describe('Pokémon Model', () => {
       model.getByName()
         .then((pokemon) => {
           assert(pokemon);
-          assert.equal(pokemon.get().name, 'Pikachu');
+          assert.equal(pokemon.get().name, 'pikachu');
           done();
         })
         .catch((err) => {
@@ -64,7 +64,7 @@ describe('Pokémon Model', () => {
       model.deleteByName()
         .then((pokemon) => {
           assert(pokemon);
-          assert.equal(pokemon.get().name, 'Pikachu');
+          assert.equal(pokemon.get().name, 'pikachu');
           done();
         })
         .catch((err) => {

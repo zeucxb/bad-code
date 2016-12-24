@@ -1,10 +1,18 @@
-let dbString = 'sqlite://db.sqlite';
+const Sequelize = require('sequelize');
 
-if (process.env['NODE_ENV']) {
-  dbString = 'sqlite://db-test.sqlite';
+let dbString = '';
+
+switch (process.env.NODE_ENV) {
+  case 'test':
+    dbString = 'sqlite://db-test.sqlite';
+    break;
+  case 'production':
+    dbString = process.env.DATABASE_URL || '';
+    break;
+  default:
+    dbString = 'sqlite://db.sqlite';
 }
 
-const Sequelize = require('sequelize');
 const db = new Sequelize(dbString, {
   logging: false
 });
