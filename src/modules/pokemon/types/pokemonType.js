@@ -1,19 +1,19 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = require('graphql');
+const {GraphQLObjectType, GraphQLString, GraphQLInt} = require('graphql');
 
-const pokemonType = new GraphQLObjectType({
-        name: 'PokemonType',
-        description: 'This represents a pokemon',
-        fields: () => ({
-            name: {
-                type: GraphQLString,
-            },
-            price: {
-                type: GraphQLInt,
-            },
-            stock: {
-                type: GraphQLInt,
-            },
-        }),
-    });
+const PokemonType = new GraphQLObjectType({
+  name: 'PokemonType',
+  description: 'This represents a pokemon',
+  fields: () => ({
+    name: {
+      type: GraphQLString,
+    },
+    price: {
+      type: GraphQLInt,
+    },
+    stock: {
+      type: GraphQLInt,
+    },
+  }),
+});
 
-module.exports = pokemonType;
+module.exports = PokemonType;
