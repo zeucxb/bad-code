@@ -46,7 +46,7 @@ mutation($pokemon: PokemonInputType) {
 ```javascript
 ### Buy a pokemon
 mutation($pokemonPurchase: PokemonRequestPurchaseType) {
-  buyPokemons(pokemon: $pokemonPurchase) {
+  buyPokemon(pokemon: $pokemonPurchase) {
     name
     price
     quantity
@@ -60,5 +60,12 @@ mutation($pokemonPurchase: PokemonRequestPurchaseType) {
     "name": "Pikachu",
     "quantity": 10
   }
+}
+```
+
+```javascript
+### Delete all pokemons in the database
+mutation {
+  deleteAllPokemons
 }
 ```
