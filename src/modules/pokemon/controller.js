@@ -11,6 +11,11 @@ class Controller {
     return model.save();
   }
   
+  static deletePokemons(pokemon) {
+    const model = new Model(pokemon);
+    return model.deleteByName();
+  }
+  
   static buyPokemons(pokemonRequest) {
     const model = new Model(pokemonRequest);
     return model.getByName()
