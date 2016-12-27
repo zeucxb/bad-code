@@ -6,6 +6,9 @@ const pikachu = {name: 'Pikachu', price: 10, stock: 100};
 describe('Pokémon Model', () => {
   before((done) => {
     Model.deleteAll()
+      .then(() => {
+        done();
+      })
       .catch(() => {
         done();
       });
@@ -74,6 +77,14 @@ describe('Pokémon Model', () => {
   });
   
   describe('deleteAllPokemons', () => {
+    beforeEach((done) => {
+      const model = new Model(pikachu);
+      model.save()
+        .then(() => {
+          done();
+        });
+    });
+    
     it('should delete all the pokémons', (done) => {
       Model.deleteAll()
         .then((total) => {
