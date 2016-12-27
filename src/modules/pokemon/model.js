@@ -42,10 +42,16 @@ class Model {
   
   save() {
     if (!this.name) {
-      return Promise.reject(new Error("Pokémon name not provided"));
+      return Promise.reject(new Error("Pokémon name not provided!"));
     }
-    
-    return Pokemon.create(this);
+    return this.getByName()
+      .then((pokemon) => {
+        if (!pokemon) {
+          return Pokemon.create(this);
+        }
+        
+        return new Error("Pokémon name already in the database!")
+      });
   }
   
   deleteByName() {
@@ -66,10 +72,9 @@ class Model {
       .then((total) => {
         return new Promise((resolve, reject) => {
           if (total) {
-            resolve(total);
-          } else {
-            reject(new Error('Nothing to delete!'));
+            return resolve(total);
           }
+          return reject(new Error('Nothing to delete!'));
         });
       });
   }
