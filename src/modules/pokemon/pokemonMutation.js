@@ -34,7 +34,7 @@ const pokemonMutation = {
   },
   deletePokemon: {
     description: 'This delete a pokémon',
-    type: pokemonPurchaseType,
+    type: pokemonType,
     args: {
       name: {
         description: 'The name of a pokémon to be deleted',
