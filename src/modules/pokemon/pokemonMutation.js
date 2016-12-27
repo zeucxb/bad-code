@@ -2,7 +2,7 @@ const pokemonType = require('./types/pokemonType');
 const pokemonInputType = require('./types/pokemonInputType');
 const pokemonPurchaseType = require('./types/pokemonPurchaseType');
 const pokemonRequestPurchaseType = require('./types/pokemonRequestPurchaseType');
-const {GraphQLString} = require('graphql');
+const {GraphQLString, GraphQLInt} = require('graphql');
 const controller = require('./controller');
 
 const pokemonMutation = {
@@ -43,6 +43,13 @@ const pokemonMutation = {
     },
     resolve: (parent, {name}) => {
       return controller.deletePokemons({name});
+    },
+  },
+  deleteAllPokemons: {
+    description: 'This delete all pokémons',
+    type: GraphQLInt,
+    resolve: () => {
+      return controller.deleteAllPokemons();
     },
   },
 };
